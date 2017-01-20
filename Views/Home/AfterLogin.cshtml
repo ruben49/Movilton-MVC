@@ -1,0 +1,24 @@
+﻿@if (Session["LogedUserFullName"] != null)
+{    
+        if(Session["LogedUserType"].ToString() == "1")
+        {
+            <text>
+                Bienvenido! @Html.ActionLink(Session["LogedUserFullName"].ToString(), "Panel", "Home", routeValues: null, htmlAttributes: new { title = "Administrar" })
+            </text>
+        }
+        else
+        {
+            <text>
+                Bienvenido! @Html.ActionLink(Session["LogedUserFullName"].ToString(), "Contact", "Home", routeValues: null, htmlAttributes: new { title = "Administrar" })
+            </text>
+        }
+            <text>
+            
+               @Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { title = "Logout" }) 
+            </text>
+}else{
+    <ul>
+        <li>@Html.ActionLink("Registrarse", "Register", "Home")</li>
+        <li>@Html.ActionLink("Login", "Login", "Home")</li>
+    </ul>
+}

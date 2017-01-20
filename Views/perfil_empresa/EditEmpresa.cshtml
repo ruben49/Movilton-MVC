@@ -1,0 +1,131 @@
+﻿@model List<movilton_mvc.Models.perfil_empresa>
+
+@{
+    ViewBag.Title = "EditEmpresa";
+    Layout = "~/Views/Shared/_Layout_Panel.cshtml";
+}
+
+@foreach(var perfil in Model)
+{
+    ViewBag.rut_empresa = perfil.rut_empresa;
+    ViewBag.nombre_empresa = perfil.nombre_empresa;
+    ViewBag.direccion = perfil.direccion;
+    ViewBag.email = perfil.email;
+    ViewBag.logo = perfil.logo;
+    ViewBag.representante = perfil.representante;
+    ViewBag.slogan = perfil.slogan;
+    ViewBag.telefono = perfil.telefono;
+}
+<script>
+    $(document).ready(function () {
+
+
+        //aqui cambiai el id del input type=file
+        $("#imagen").change(function () {
+            mostrarImagen(this);
+        });
+
+
+        function mostrarImagen(input) {
+
+            //primero se revisa si el navegador es compatible con todas las api
+            if (window.File && window.FileReader && window.FileList && window.Blob) {
+                //Si pasa no hay problema
+
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    reader.onload = function (e) {
+                        //aqui le cambias el id del tag img
+                        $('#img').attr('src', e.target.result);
+
+                    }
+                    reader.readAsDataURL(input.files[0]);
+
+                }
+
+            } else {
+                alert('Error al leer el archivo. Las APIs no son totalmente compatibles con el navegador');
+            }
+        }
+
+    });
+</script>
+
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/perfil_empresa">Perfil Empresa</a>
+        </li>
+        <li>
+            <a href="/perfil_empresa/EditEmpresa">Edición Perfil Empresa</a>
+        </li>
+    </ul>
+</div>
+
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-edit"></i> Editar Perfil de la Empresa</h2>
+            </div>
+            <div class="box-content">
+                <form method="post" enctype="multipart/form-data">
+                    
+                    <div class="form-group">
+                        <label for="img" style="float:left;margin-left:10px">&nbsp;Logo de la Empresa</label>
+                        <div style="clear:both"></div>
+                        <label style="margin-left:15px;" for="imagen">
+                            <img src="~/Images/Logos/@ViewBag.logo" width="120" id="img" height="100" style="float:left;" />
+                            <div style="clear:both"></div>
+                            &nbsp;&nbsp;&nbsp;&nbsp; Subir Imagen
+                        </label>
+                        <input type="file" name="imagen" id="imagen"  style="display:none;" >
+                        <input type="hidden" value="@ViewBag.logo" name="logo" id="logo" />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="rut_empresa">Rut Empresa</label>
+                        <input type="text" name="rut_empresa" class="form-control" value="@ViewBag.rut_empresa" id="rut_empresa" placeholder="Ingrese el Rut" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="nombre_empresa">Nombre Empresa</label>
+                        <input type="text" name="nombre_empresa" class="form-control" id="nombre_empresa" value="@ViewBag.nombre_empresa" placeholder="Ingrese el Nombre" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="direccion">Dirección</label>
+                        <input type="text" name="direccion" class="form-control" id="direccion" value="@ViewBag.direccion" placeholder="Ingrese la Dirección" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label> 
+                        <input type="email" name="email" class="form-control" id="exampleInputEmail1" value="@ViewBag.email" placeholder="Ingrese el Email" required>
+                    </div>                    
+          
+                    <div class="form-group">
+                        <label for="representante">Representante Legal</label>
+                        <input type="text" name="representante" class="form-control" id="representante" value="@ViewBag.representante" placeholder="Ingrese el Nombre del Representante" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="slogan">Slogan</label>
+                        <input type="text" name="slogan" class="form-control" id="slogan" value="@ViewBag.slogan" placeholder="Ingrese el Slogan" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="telefono">Telefono</label>
+                        <input type="number" name="telefono" class="form-control" id="telefono" value="@ViewBag.telefono" required>
+                    </div>
+
+
+                    <button type="submit" class="btn btn-default">Guardar</button>
+                </form>
+
+            </div>
+        </div>
+    </div>
+    <!--/span-->
+
+</div>

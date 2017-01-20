@@ -1,0 +1,81 @@
+﻿@model List<movilton_mvc.Models.perfil_empresa>
+
+@{
+    Layout = "~/Views/Shared/_Layout_Panel.cshtml";
+}
+
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/Home/Panel">Home</a>
+        </li>
+        <li>
+            <a href="/perfil_empresa">Perfil Empresa</a>
+        </li>
+    </ul>
+</div>
+@foreach (var perfil in Model)
+{
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-copyright-mark"></i> Perfil Empresa</h2>
+
+                    <div class="box-icon">
+                        <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                        <a href="/perfil_empresa/EditEmpresa" class="btn  btn-round btn-default"><i class="glyphicon glyphicon-edit"></i></a>
+                    </div>
+                </div>
+                <div class="box-content" style="display: block;">
+
+                    <table class="table table-striped table-bordered responsive">
+                        <thead>
+                            <tr>
+                                <th>Campos</th>
+                                <th>Detalle</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+
+                            <tr>
+                                <td class="center">Rut Empresa</td>
+                                <td class="center">@perfil.rut_empresa</td>
+                            </tr>
+                            <tr>
+                                <td class="center">Nombre Empresa</td>
+                                <td class="center">@perfil.nombre_empresa</td>
+                            </tr>
+                            <tr>
+                                <td class="center">Dirección</td>
+                                <td class="center">@perfil.direccion</td>
+                            </tr>
+                            <tr>
+                                <td class="center">Email</td>
+                                <td class="center">@perfil.email</td>
+                            </tr>
+                            <tr>
+                                <td class="center">Logo</td>
+                                <td class="center"><img src="~/Images/Logos/@perfil.logo" width="110" height="80"/></td>
+                            </tr>
+                            <tr>
+                                <td class="center">Representante Legal</td>
+                                <td class="center">@perfil.representante</td>
+                            </tr>
+                            <tr>
+                                <td class="center">Slogan</td>
+                                <td class="center">@perfil.slogan</td>
+                            </tr>
+                            <tr>
+                                <td class="center"> Teléfono</td>
+                                <td class="center">@perfil.telefono</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+
+                </div>
+            </div>
+        </div>
+        </div>
+        }

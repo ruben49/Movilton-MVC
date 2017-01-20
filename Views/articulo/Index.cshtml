@@ -1,0 +1,83 @@
+﻿@model List<movilton_mvc.Models.articulos>
+
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout_Panel.cshtml";
+}
+
+
+<div>
+    <ul class="breadcrumb">
+        <li>
+            <a href="/Home/Panel">Home</a>
+        </li>
+        <li>
+            <a href="/articulo">Articulos</a>
+        </li>
+    </ul>
+</div>
+
+<div class="row">
+    <div class="box col-md-12">
+        <div class="box-inner">
+            <div class="box-header well" data-original-title="">
+                <h2><i class="glyphicon glyphicon-picture"></i> Articulos</h2>
+
+                <div class="box-icon">
+                    <a href="#" class="btn btn-minimize btn-round btn-default"><i class="glyphicon glyphicon-chevron-up"></i></a>
+                    <a href="/articulo/CreateArticle" class="btn  btn-round btn-default"><i class="glyphicon glyphicon-save"></i></a>
+                </div>
+            </div>
+            <div class="box-content" style="display: block;">
+                <table class="table table-striped table-bordered responsive">
+                    <thead>
+                        <tr>
+                            <th>Titulo</th>
+                            <th>Descripción</th>
+                            <th>Imagen</th>
+                            <th>Ubicación</th>
+                            <th>Autor</th>
+                            <th>Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+
+                        @foreach (var articulo in Model)
+                        {
+                            <tr>
+                                <td class="center">@articulo.titulo</td>
+                                <td class="center">@articulo.descripcion</td>
+                                <td class="center"><img  src="~/Images/Articulos/@articulo.imagen" height="100" width="120"/></td>
+                                <td class="center">@articulo.ubicacion</td>
+                                <td class="center">
+                                    @if (articulo.id_user == articulo.usuarios.id_user)
+                                    {
+                                        <text> @articulo.usuarios.nombre_usuario </text>
+                                    }
+                                </td>
+
+
+
+                                @{
+                            int id = articulo.id_articulo;
+                                }
+
+
+                                <td class="center">
+                                    <a class="btn btn-info" href="/articulo/EditArticle?id=@id">
+                                        <i class="glyphicon glyphicon-edit icon-white"></i>
+                                        Editar Articulo
+                                    </a>
+                                    <a class="btn btn-danger" href="/usuarios/DeleteArticle?id=@id">
+                                        <i class="glyphicon glyphicon-trash icon-white"></i>
+                                        Eliminar Articulo
+                                    </a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

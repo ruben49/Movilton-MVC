@@ -1,0 +1,39 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+@section featured {
+    <section class="featured">
+        <div class="content-wrapper" id="contenido_wrap">
+            <div id="content_slider">
+                <div class="slider">
+                    <div id="ele1" class="s_element s_visible"></div>
+                    <div id="ele2" class="s_element"></div>
+                    <div id="ele3" class="s_element"></div>
+                    <div id="ele4" class="s_element"></div>
+                    <div id="ele5" class="s_element"></div>
+                    <div id="ele6" class="s_element"></div>
+                </div>
+
+                <div style="clear:both;"> </div>
+
+                <ul class="control_btn">
+                    <li id="btn1" class="btn_slider btn_selected"></li>
+                    <li id="btn2" class="btn_slider"></li>
+                    <li id="btn3" class="btn_slider"></li>
+                    <li id="btn4" class="btn_slider"></li>
+                    <li id="btn5" class="btn_slider"></li>
+                    <li id="btn6" class="btn_slider"></li>
+                </ul>
+
+
+            </div>
+        </div>
+    </section>
+}
+
+<!-- aqui abajo iría el contenido -->
+
+<h1 id="_tit_parrafo">@ViewBag.Tittle</h1>
+<p id="_parrafo">@ViewBag.Message</p>
+<div id="anim_img"></div>

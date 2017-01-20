@@ -1,0 +1,184 @@
+﻿@{
+    ViewBag.partial = "usuarios";
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>Admin Movilton</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Charisma, a fully featured, responsive, HTML5, Bootstrap admin template.">
+    <meta name="author" content="Movilton">
+    <!-- The styles -->
+    <link href="~/Content/panel/css/bootstrap-united.min.css" rel="stylesheet" />
+    <link href="~/Content/panel/css/charisma-app.css" rel="stylesheet">
+    <link href='~/Content/panel/bower_components/fullcalendar/dist/fullcalendar.css' rel='stylesheet'>
+    <link href='~/Content/panel/bower_components/fullcalendar/dist/fullcalendar.print.css' rel='stylesheet' media='print'>
+    <link href='~/Content/panel/bower_components/chosen/chosen.min.css' rel='stylesheet'>
+    <link href='~/Content/panel/bower_components/colorbox/example3/colorbox.css' rel='stylesheet'>
+    <link href='~/Content/panel/bower_components/responsive-tables/responsive-tables.css' rel='stylesheet'>
+    <link href='~/Content/panel/bower_components/bootstrap-tour/build/css/bootstrap-tour.min.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/jquery.noty.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/noty_theme_default.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/elfinder.min.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/elfinder.theme.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/jquery.iphone.toggle.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/uploadify.css' rel='stylesheet'>
+    <link href='~/Content/panel/css/animate.min.css' rel='stylesheet'>
+    
+    <!-- jQuery -->
+    <script src="~/Content/panel/bower_components/jquery/jquery.min.js"></script>
+    <!-- The fav icon -->
+    <link rel="shortcut icon" href="~/Images/Logos/@ViewBag.img">
+</head>
+<body>
+    <!-- topbar starts -->
+    <div class="navbar navbar-default" role="navigation">
+        <div class="navbar-inner">
+            <button type="button" class="navbar-toggle pull-left animated flip">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="/Home/Panel">
+                <img alt="Charisma Logo" src="~/Images/Logos/@ViewBag.img" class="hidden-xs" />
+                <span>Movilton</span>
+            </a>
+            <!-- user dropdown starts -->
+            <div class="btn-group pull-right">
+                <button class="btn btn-default dropdown-toggle" data-toggle="dropdown">
+                    <i class="glyphicon glyphicon-user"></i><span class="hidden-sm hidden-xs"> 
+                    
+                    @if (Session["LogedUserType"].ToString().Equals("1"))
+                    {
+                    <text>
+                        Administrador 
+                    </text>
+                    }
+
+                    </span>
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu">
+                    <li>
+                        @Html.ActionLink("Visitar Sitio", "Index", "Home", routeValues: null, htmlAttributes: new { title = "Visitar el Sitio" })  
+                    </li>
+                    <li class="divider"></li>
+                    <li>
+                        @Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { title = "Logout" })    
+                    </li>
+                </ul>
+            </div>
+            <!-- user dropdown ends -->
+            
+        </div>
+    </div>
+    <!-- topbar ends -->
+
+    <div class="ch-container">
+        <div class="row">
+
+            <!-- left menu starts -->
+            <div class="col-sm-2 col-lg-2">
+                <div class="sidebar-nav">
+                    <div class="nav-canvas">
+                        <div class="nav-sm nav nav-stacked">
+                            <!-- Aqui empieza el menu principal -->
+                        </div>
+                        <ul class="nav nav-pills nav-stacked main-menu">
+                            <li class="nav-header">Main</li>
+                            <li>
+                                <a class="ajax-link" href="/Home/Panel"><i class="glyphicon glyphicon-home"></i><span> Dashboard</span></a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="/perfil_empresa">
+                                    <i class="glyphicon glyphicon-edit"></i><span> Perfil Empresa</span>
+                                </a>
+                            </li>
+                            <li>
+                                <a class="ajax-link" href="/articulo"><i class="glyphicon glyphicon-picture"></i><span> Articulos</span></a>
+                            </li>
+                            <li class="nav-header hidden-md">Administracion Usuarios</li>
+                            <li class="accordion">
+                                <a href="#"><i class="glyphicon glyphicon-plus"></i><span>Usuarios</span></a>
+                                <ul class="nav nav-pills nav-stacked">
+                                    <li>@Html.ActionLink("Agregar Usuarios", "AgregarUser", "usuarios")</li>
+                                    <li>
+                                        @Html.ActionLink("Lista de Usuarios", "Index", "usuarios")            
+                                    </li>
+                                </ul>
+                            </li>
+                           
+                            <li>      
+                                    @Html.ActionLink("Logout", "Logout", "Home", routeValues: null, htmlAttributes: new { @class = "glyphicon glyphicon-log-out", title = "Logout" })
+                            </li>
+
+
+                        </ul>
+
+                    </div>
+                </div>
+            </div>
+            <!--/span-->
+            <!-- left menu ends -->
+
+            <div id="content" class="col-lg-10 col-sm-10">
+
+                <!-- Desde aqui se puede ir editando el panel-->
+                @RenderBody()
+            </div>
+
+      
+        </div>
+ 
+   
+    </div><!--/row-->
+
+  
+    <hr>
+
+    <footer class="row">
+        <p class="col-md-9 col-sm-9 col-xs-12 copyright">&copy; Movilton 2014</p>
+        <p class="col-md-3 col-sm-3 col-xs-12 powered-by">
+            Powered by: <a href="http://usman.it/free-responsive-admin-template">Charisma</a>
+        </p>
+    </footer>
+    
+    <!-- external javascript -->
+    <script src="~/Content/panel/bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
+    <!-- library for cookie management -->
+    <script src="~/Content/panel/js/jquery.cookie.js"></script>
+    <!-- calender plugin -->
+    <script src='~/Content/panel/bower_components/moment/min/moment.min.js'></script>
+    <script src='~/Content/panel/bower_components/fullcalendar/dist/fullcalendar.min.js'></script>
+    <!-- data table plugin -->
+    <script src='~/Content/panel/js/jquery.dataTables.min.js'></script>
+    <!-- select or dropdown enhancer -->
+    <script src="~/Content/panel/bower_components/chosen/chosen.jquery.min.js"></script>
+    <!-- plugin for gallery image view -->
+    <script src="~/Content/panel/bower_components/colorbox/jquery.colorbox-min.js"></script>
+    <!-- notification plugin -->
+    <script src="~/Content/panel/js/jquery.noty.js"></script>
+    <!-- library for making tables responsive -->
+    <script src="~/Content/panel/bower_components/responsive-tables/responsive-tables.js"></script>
+    <!-- tour plugin -->
+    <script src="~/Content/panel/bower_components/bootstrap-tour/build/js/bootstrap-tour.min.js"></script>
+    <!-- star rating plugin -->
+    <script src="~/Content/panel/js/jquery.raty.min.js"></script>
+    <!-- for iOS style toggle switch -->
+    <script src="~/Content/panel/js/jquery.iphone.toggle.js"></script>
+    <!-- autogrowing textarea plugin -->
+    <script src="~/Content/panel/js/jquery.autogrow-textarea.js"></script>
+    <!-- multiple file upload plugin -->
+    <script src="~/Content/panel/js/jquery.uploadify-3.1.min.js"></script>
+    <!-- history.js for cross-browser state change on ajax -->
+    <script src="~/Content/panel/js/jquery.history.js"></script>
+    <!-- application script for Charisma demo -->
+    <script src="~/Content/panel/js/charisma.js"></script>
+
+</body>
+</html>
+
+

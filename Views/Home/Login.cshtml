@@ -1,0 +1,64 @@
+﻿@model movilton_mvc.Models.usuarios
+
+@{
+    ViewBag.Tittle = "Login";
+}
+
+<h2>Login</h2>
+
+@using (Html.BeginForm("Login", "Home", FormMethod.Post))
+{
+    //ahora se crean los tags de formularios
+    @Html.AntiForgeryToken() // Esto es para prevenir ataques csrf, que es un tipo de vulnerabilidad web
+    @Html.ValidationSummary(true)
+    if(ViewBag.Message != null)
+    {
+        <div style="border: 1px solid red">
+            @ViewBag.Message
+
+        </div>
+        
+    }
+   
+    
+    <table>
+        <tr>
+            <td>
+                @Html.LabelFor(a=>a.nombre_usuario)
+            </td>
+            <td> 
+                @Html.TextBoxFor(a=>a.nombre_usuario)
+            </td>
+
+            <td>
+                @Html.ValidationMessageFor(a => a.nombre_usuario)
+            </td>
+        </tr>
+        <tr>
+
+            <td>
+                @Html.LabelFor(a => a.password)
+            </td>
+            <td>
+                @Html.PasswordFor(a => a.password)
+            </td>
+            <td>
+                @Html.ValidationMessageFor(a => a.password)
+            </td>
+
+
+        </tr>
+        <tr>
+            <td>
+                <input type="submit" value="Login" />
+            </td>
+        </tr>
+
+    </table>
+    
+}
+
+@* Esta parte es para el javascript *@
+@section Scripts{
+    @Scripts.Render("~/bundles/jqueryval")
+}   
