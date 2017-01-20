@@ -1,0 +1,89 @@
+﻿/*Aqui va los estilos del slider -----------------------------------------*/
+#content_slider{
+    margin-top: 35px;
+    width: 100%;
+    height: 100%;
+}
+
+.slider{
+    width: 100%;
+    height: 250px;
+    float: left;
+    overflow: hidden;
+}
+
+
+.s_element{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.s_visible{
+    display:block;
+}
+
+
+#ele1 {
+    background-image: url('../Images/slides/1.jpg');
+}
+
+#ele2 {
+    background-image: url('../Images/slides/2.jpg');
+}
+
+#ele3{
+    background: gray;
+}
+
+#ele4{
+    background: blue;
+}
+
+#ele5{
+    background: green;
+}
+
+#ele6{
+    background: yellow;
+}
+
+
+/*Controles Slider -------------------------------------------------------------*/
+
+.control_btn
+{
+    
+    height: 9px;   
+    margin-left: 400px;
+}
+
+.control_btn li{
+    display:block;
+    float:left;  
+}
+
+
+.btn_slider
+{
+    margin-left: 10px;
+    background: #d4d4d4;
+    height: 9px;
+    width: 9px;
+    border-radius: 4.5px;
+}
+
+.btn_slider:hover{
+    background: #454545;
+    cursor:pointer;
+}
+
+
+.btn_selected{
+    background: #454545;
+    cursor:pointer;
+}
+
+
+
